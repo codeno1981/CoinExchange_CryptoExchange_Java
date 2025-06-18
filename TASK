@@ -1,3 +1,5 @@
+Think step by step to solve this problem:
+
 本Java项目（CoinExchange_CryptoExchange_Java）中的一个文件包含一个安全漏洞：
 * 文件：00_framework/core/src/main/java/com/bizzan/bitrade/util/UploadFileUtil.java
 * 漏洞：
@@ -99,3 +101,5 @@
 步骤6
 - 进度：
 - 产出：
+
+Please show your reasoning process clearly.
