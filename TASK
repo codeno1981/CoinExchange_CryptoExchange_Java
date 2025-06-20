@@ -14,6 +14,15 @@ Remember, your goal is the script, not analyzing the vulnerability, not fixing t
 You are in a sandbox environment, so don't worry about triggering the vulnerability.
 <Goal>
 
+CRITICAL REQUIREMENTS:
+- STEP 5: Must build the EXACT ucenter-api module, not a simplified version
+- STEP 6: Must start the EXACT ucenter-api application on port 6001, not a different application
+- STEP 7: Must test the EXACT endpoint /upload/local/image on port 6001 that was identified in STEP 1
+- NO SHORTCUTS: Do not create simplified POC applications or workarounds
+- NO SUBSTITUTIONS: Do not use different ports, endpoints, or applications than those identified in STEP 1
+- VERIFICATION REQUIREMENT: The final test must use the exact same entrypoint path identified in the vulnerability analysis
+- IF BUILD FAILS: Fix the build issues, do not create alternative applications
+
 <Step>
 You must follow the steps below to achieve your goal.
 
@@ -48,11 +57,11 @@ You must follow the steps below to achieve your goal.
 * STEP 4: Prepare JDK.
   ** Work **
     Make sure the JDK is accessable in the current environment.
-    <IMPORTANT>
+    CRITICAL REQUIREMENTS:
       After JDK version is determined through analysis in STEP 3 it CAN NOT be changed.
       You must use that very version and make sure it is usable.
       If you still cannot succeed after trying your best, stop and report the problem.
-    <IMPORTANT>
+      DO NOT TRY TO USE OTHER VERSION!!! NEVER!!!
   ** Output **
     JAVA_PATH: path containing the Java executables.
 
@@ -60,11 +69,12 @@ You must follow the steps below to achieve your goal.
   ** Work **
     Determine build target. It's the vulnerability-related part of the project (including ENTRYPOINT) or the WRAPPER_APPLICATION in STEP 2 using the proper JDK.
     Build the target using proper JDK. Note that it is required sometimes to build the target from its parent module when the target is a submodule.
-    <IMPORTANT>
+    CRITICAL REQUIREMENTS:
+      After you determine the target it CAN NOT be changed. You MUST build the EXACT target you choose.
       When build fails, you must try all possible approaches to make it successful. You can modify project files if nessesary.
-      You are NOT allowed to change the goal of this step or suggest alternative workarounds.
+      You are NOT allowed to change the build target or suggest alternative workarounds.
       If you still cannot succeed after trying your best, stop and report the problem.
-    <IMPORTANT>
+      DO NOT TRY TO CREATE A SIMPILIED PROGRAM TO BUILD!!! NEVER!!!
   ** Output **
     BUILD_COMMAND: the command that can successfully build the target.
 
@@ -73,11 +83,12 @@ You must follow the steps below to achieve your goal.
     Run the target built in STEP 5 which includes the ENTRYPOINT. You should first check the required external dependencies for running the target.
     You can read the project documents, configuration files or the code base to figure out the dependency list.
     You should then make sure all the dependencies are ready. And you should also change configurations where appropriate for the target to be able to use the dependencies.
-    <IMPORTANT>
+    CRITICAL REQUIREMENTS:
+      You MUST run the EXACT target built in STEP 5, not a different target.
       When run fails, you must try all possible approaches to make it successful. You can modify project files if nessesary.
       You are NOT allowed to change the goal of this step or suggest alternative workarounds.
       If you still cannot succeed after trying your best, stop and report the problem.
-    <IMPORTANT>
+      DO NOT TRY TO CREATE A SIMPILIED PROGRAM TO RUN!!! NEVER!!!
   ** Output **
     START_COMMAND: the command that can successfully start the target.
 
