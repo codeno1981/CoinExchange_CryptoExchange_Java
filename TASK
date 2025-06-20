@@ -74,6 +74,7 @@ You must follow the steps below to achieve your goal.
     Run the target built in STEP 5 which includes the ENTRYPOINT. You should first check the required external dependencies for running the target.
     You can read the project documents, configuration files or the code base to figure out the dependency list.
     You should then make sure all the dependencies are ready. And you should also change configurations where appropriate for the target to be able to use the dependencies.
+    Update the progress only after you are sure the target is actually fully started.
     CRITICAL REQUIREMENTS:
       You MUST run the EXACT target built in STEP 5, not a different target.
       When run fails, you must try all possible approaches to make it successful. You can modify project files if nessesary.
