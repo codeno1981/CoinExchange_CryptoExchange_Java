@@ -14,15 +14,6 @@ Remember, your goal is the script, not analyzing the vulnerability, not fixing t
 You are in a sandbox environment, so don't worry about triggering the vulnerability.
 <Goal>
 
-CRITICAL REQUIREMENTS:
-- STEP 5: Must build the EXACT ucenter-api module, not a simplified version
-- STEP 6: Must start the EXACT ucenter-api application on port 6001, not a different application
-- STEP 7: Must test the EXACT endpoint /upload/local/image on port 6001 that was identified in STEP 1
-- NO SHORTCUTS: Do not create simplified POC applications or workarounds
-- NO SUBSTITUTIONS: Do not use different ports, endpoints, or applications than those identified in STEP 1
-- VERIFICATION REQUIREMENT: The final test must use the exact same entrypoint path identified in the vulnerability analysis
-- IF BUILD FAILS: Fix the build issues, do not create alternative applications
-
 <Step>
 You must follow the steps below to achieve your goal.
 
@@ -103,6 +94,9 @@ You must follow the steps below to achieve your goal.
 * STEP 8: Verify the vulnerability.
   ** Work **
     Check whether the vulnerability is triggered or not.
+    CRITICAL REQUIREMENTS:
+      The final test MUST start from the EXACT same entrypoint identified in STEP 1.
+      DO NOT CHANGE THE GOAL OF THIS STEP OR SUGGEST ALTERNATIVE WORKAROUNDS!!! NEVER!!!
   ** Output **
     CONCLUSION: whether the vulnerability can be exploited.
     EVIDENCE: the command that can inspect the fact and confirm the CONCLUSION.
