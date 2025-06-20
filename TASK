@@ -110,6 +110,10 @@ You must follow the steps below to achieve your goal.
     SCRIPT: the vulnerability exploiting POC script or nothing.
 <Step>
 
+<Tip>
+* After you modify a Java file or a configuration file, do not forget to rebuild the target before you proceed.
+<Tip>
+
 <Principle>
 When you finish a step, you should update below progress section with the output of the step you just finished and provide some memo before performing the next step.
 Then commit your changes to project files (including this TASK document) using git command.
