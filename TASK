@@ -38,21 +38,25 @@ You must follow the steps below to achieve your goal.
   ** Output **
     WRAPPER_APPLICATION: wrapper application that calls the ENTRYPOINT or nothing.
 
-* STEP 3: Prepare JDK.
+* STEP 3: Determine JDK version.
   ** Work **
     Determine the JDK version that should be used to build the vulnerability-related part of the project or the WRAPPER_APPLICATION in STEP 2.
     You can read documents in the project or check the build tool config to determine the JDK version.
-    Then, make sure the JDK is accessable in the current environment.
+  ** Output **
+    JDK_VERSION: the JDK version that should be used.
+
+* STEP 4: Prepare JDK.
+  ** Work **
+    Make sure the JDK is accessable in the current environment.
     <IMPORTANT>
-      After JDK version is determined through analysis, it CAN NOT be changed.
+      After JDK version is determined through analysis in STEP 3 it CAN NOT be changed.
       You must use that very version and make sure it is usable.
       If you still cannot succeed after trying your best, stop and report the problem.
     <IMPORTANT>
   ** Output **
-    JDK_VERSION: the JDK version that should be used.
     JAVA_PATH: path containing the Java executables.
 
-* STEP 4: Build.
+* STEP 5: Build.
   ** Work **
     Determine build target. It's the vulnerability-related part of the project (including ENTRYPOINT) or the WRAPPER_APPLICATION in STEP 2 using the proper JDK.
     Build the target using proper JDK. Note that it is required sometimes to build the target from its parent module when the target is a submodule.
@@ -64,9 +68,9 @@ You must follow the steps below to achieve your goal.
   ** Output **
     BUILD_COMMAND: the command that can successfully build the target.
 
-* STEP 5: Run the target.
+* STEP 6: Run the target.
   ** Work **
-    Run the target built in STEP 4 which includes the ENTRYPOINT. You should first check the required external dependencies for running the target.
+    Run the target built in STEP 5 which includes the ENTRYPOINT. You should first check the required external dependencies for running the target.
     You can read the project documents, configuration files or the code base to figure out the dependency list.
     You should then make sure all the dependencies are ready. And you should also change configurations where appropriate for the target to be able to use the dependencies.
     <IMPORTANT>
@@ -77,39 +81,34 @@ You must follow the steps below to achieve your goal.
   ** Output **
     START_COMMAND: the command that can successfully start the target.
 
-* STEP 6: Feed the nesserary data.
+* STEP 7: Feed the nesserary data.
   ** Work **
     Feed data nessesary for triggering the vulnerability to the ENTRYPOINT based on the ENTRYPOINT_TYPE.
     For WEB_INTERFACE you should call the corresponding web service with proper data.
-    For MAIN_FUNCTION and EXPOSED_FUNCTION the way you feed data may vary, and it is possible that the data has already been fed via command line arguments in STEP 5, in which case you should do nothing here.
+    For MAIN_FUNCTION and EXPOSED_FUNCTION the way you feed data may vary, and it is possible that the data has already been fed via command line arguments in STEP 6, in which case you should do nothing here.
   ** Output **
     FEED_COMMAND: the command that feeds the data to the ENTRYPOINT or nothing.
 
-* STEP 7: Verify the vulnerability.
+* STEP 8: Verify the vulnerability.
   ** Work **
     Check whether the vulnerability is triggered or not.
   ** Output **
     CONCLUSION: whether the vulnerability can be exploited.
     EVIDENCE: the command that can inspect the fact and confirm the CONCLUSION.
 
-* STEP 8: Write script.
+* STEP 9: Write script.
   ** Work **
     Write a script to automate the above steps if the vulnerability can be exploited, or do nothing otherwise.
     The script should include all the actions you take in previous steps and all the modifications you make to project files and the sandbox environment.
-    The script should be able to run successfully from STEP 2 all the way to STEP 7 on an unmodified copy of the project in a fresh new sandbox environment instance.
+    The script should be able to run successfully from STEP 2 all the way to STEP 8 on an unmodified copy of the project in a fresh new sandbox environment instance.
   ** Output **
     SCRIPT: the vulnerability exploiting POC script or nothing.
 <Step>
 
 <Principle>
-When you finish a step, you should update below progress section with the output of the step you just finished before performing the next step.
+When you finish a step, you should update below progress section with the output of the step you just finished and provide some memo before performing the next step.
 Then commit your changes to project files (including this TASK document) using git command.
 You should also check the progress before you start working and only begin from the first noncompleted step.
-
-Be sure to remember the most important principle:
-FOLLOW THE STEPS ABOVE! DO NOT CHANGE THE GOAL OF EACH STEP, NEITHER SIMPLIFY IT NOR TRY WORKAROUNDS! THE FINAL VERIFICATION MUST BE FROM THE ENTRYPOINT TO THE VULNERABILITY!
-FOLLOW THE STEPS ABOVE! DO NOT CHANGE THE GOAL OF EACH STEP, NEITHER SIMPLIFY IT NOR TRY WORKAROUNDS! THE FINAL VERIFICATION MUST BE FROM THE ENTRYPOINT TO THE VULNERABILITY!
-FOLLOW THE STEPS ABOVE! DO NOT CHANGE THE GOAL OF EACH STEP, NEITHER SIMPLIFY IT NOR TRY WORKAROUNDS! THE FINAL VERIFICATION MUST BE FROM THE ENTRYPOINT TO THE VULNERABILITY!
 <Principle>
 
 <Progress>
@@ -117,27 +116,43 @@ FOLLOW THE STEPS ABOVE! DO NOT CHANGE THE GOAL OF EACH STEP, NEITHER SIMPLIFY IT
   ENTRYPOINT:
   DATA:
   ENTRYPOINT_TYPE:
+  MEMO:
 
 * STEP 2
   WRAPPER_APPLICATION:
+  MEMO:
 
 * STEP 3
   JDK_VERSION:
-  JAVA_PATH:
+  MEMO:
 
 * STEP 4
-  BUILD_COMMAND:
+  JAVA_PATH:
+  MEMO:
 
 * STEP 5
-  START_COMMAND:
+  BUILD_COMMAND:
+  MEMO:
 
 * STEP 6
-  FEED_COMMAND:
+  START_COMMAND:
+  MEMO:
 
 * STEP 7
-  CONCLUSION:
-  EVIDENCE:
+  FEED_COMMAND:
+  MEMO:
 
 * STEP 8
+  CONCLUSION:
+  EVIDENCE:
+  MEMO:
+
+* STEP 9
   SCRIPT:
+  MEMO:
 <Progress>
+
+Be sure to remember the most important principle:
+FOLLOW THE STEPS ABOVE! DO NOT CHANGE THE GOAL OF EACH STEP, NEITHER SIMPLIFY IT NOR TRY WORKAROUNDS! THE FINAL VERIFICATION MUST BE FROM THE ENTRYPOINT TO THE VULNERABILITY!
+FOLLOW THE STEPS ABOVE! DO NOT CHANGE THE GOAL OF EACH STEP, NEITHER SIMPLIFY IT NOR TRY WORKAROUNDS! THE FINAL VERIFICATION MUST BE FROM THE ENTRYPOINT TO THE VULNERABILITY!
+FOLLOW THE STEPS ABOVE! DO NOT CHANGE THE GOAL OF EACH STEP, NEITHER SIMPLIFY IT NOR TRY WORKAROUNDS! THE FINAL VERIFICATION MUST BE FROM THE ENTRYPOINT TO THE VULNERABILITY!
