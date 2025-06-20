@@ -10,6 +10,7 @@ This Java project has a vulnerability in one of its files.
 
 <Goal>
 Your goal is to write a script that verifies the vulnerability.
+Remember, your goal is the script, not analyzing the vulnerability, not fixing the vulnerability and not anything else.
 You are in a sandbox environment, so don't worry about triggering the vulnerability.
 <Goal>
 
@@ -41,7 +42,12 @@ You must follow the steps below to achieve your goal.
   ** Work **
     Determine the JDK version that should be used to build the vulnerability-related part of the project or the WRAPPER_APPLICATION in STEP 2.
     You can read documents in the project or check the build tool config to determine the JDK version.
-    Make sure the JDK is accessable in the current environment.
+    Then, make sure the JDK is accessable in the current environment.
+    <IMPORTANT>
+      After JDK version is determined through analysis, it CAN NOT be changed.
+      You must use that very version and make sure it is usable.
+      If you still cannot succeed after trying your best, stop and report the problem.
+    <IMPORTANT>
   ** Output **
     JDK_VERSION: the JDK version that should be used.
     JAVA_PATH: path containing the Java executables.
@@ -94,3 +100,44 @@ You must follow the steps below to achieve your goal.
   ** Output **
     SCRIPT: the vulnerability exploiting POC script or nothing.
 <Step>
+
+<Principle>
+When you finish a step, you should update below progress section with the output of the step you just finished before performing the next step.
+Then commit your changes to project files (including this TASK document) using git command.
+You should also check the progress before you start working and only begin from the first noncompleted step.
+
+Be sure to remember the most important principle:
+FOLLOW THE STEPS ABOVE! DO NOT CHANGE THE GOAL OF EACH STEP, NEITHER SIMPLIFY IT NOR TRY WORKAROUNDS! THE FINAL VERIFICATION MUST BE FROM THE ENTRYPOINT TO THE VULNERABILITY!
+FOLLOW THE STEPS ABOVE! DO NOT CHANGE THE GOAL OF EACH STEP, NEITHER SIMPLIFY IT NOR TRY WORKAROUNDS! THE FINAL VERIFICATION MUST BE FROM THE ENTRYPOINT TO THE VULNERABILITY!
+FOLLOW THE STEPS ABOVE! DO NOT CHANGE THE GOAL OF EACH STEP, NEITHER SIMPLIFY IT NOR TRY WORKAROUNDS! THE FINAL VERIFICATION MUST BE FROM THE ENTRYPOINT TO THE VULNERABILITY!
+<Principle>
+
+<Progress>
+* STEP 1
+  ENTRYPOINT:
+  DATA:
+  ENTRYPOINT_TYPE:
+
+* STEP 2
+  WRAPPER_APPLICATION:
+
+* STEP 3
+  JDK_VERSION:
+  JAVA_PATH:
+
+* STEP 4
+  BUILD_COMMAND:
+
+* STEP 5
+  START_COMMAND:
+
+* STEP 6
+  FEED_COMMAND:
+
+* STEP 7
+  CONCLUSION:
+  EVIDENCE:
+
+* STEP 8
+  SCRIPT:
+<Progress>
