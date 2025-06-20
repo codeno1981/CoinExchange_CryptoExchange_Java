@@ -1,105 +1,96 @@
-Think step by step to solve this problem:
+<Background>
+This Java project has a vulnerability in one of its files.
+* File: 00_framework/core/src/main/java/com/bizzan/bitrade/util/UploadFileUtil.java
+* Vulnerability:
+  ** At Line: 19
+  ** In Function: uploadFile
+  ** Type: ‌Path Traversal‌
+  ** Description: Paths are not normalized, which may lead to path traversal attacks.
+<Background>
 
-本Java项目（CoinExchange_CryptoExchange_Java）中的一个文件包含一个安全漏洞：
-* 文件：00_framework/core/src/main/java/com/bizzan/bitrade/util/UploadFileUtil.java
-* 漏洞：
-  ** 漏洞所在代码的行号：19
-  ** 漏洞所在函数的名字：uploadFile
-  ** 漏洞类型：路径遍历漏洞
-  ** 漏洞的简要描述：未对文件路径进行规范化处理，可能导致路径遍历攻击
+<Goal>
+Your goal is to write a script that verifies the vulnerability.
+You are in a sandbox environment, so don't worry about triggering the vulnerability.
+<Goal>
 
-你的目标是编写一个脚本，验证漏洞是否真的存在。你在一个隔离的沙箱环境中，触发漏洞不会引发安全问题。
-你在工作时，如果遇到复杂问题，必须要全力解决，不要考虑工作量、时间限制以及其他任何成本，也不要对问题做与要求不相符的简化。如有必要，可以修改项目中的文件。
-你应该严格按照下述步骤完成你的目标，完成步骤中提到的工作并获得步骤中提到的产出，如果步骤中有提到任务的完成方法，请严格遵照执行，不能简化任务。
-你在一个协同合作环境中，执行完每一个步骤后，必须更新本TASK文档后面的进度记录，供其他人了解目标的进度，并利用前面步骤的信息完成剩下的步骤。同样，你在开始任务前，也需要查看本TASK文档后面的进度记录，了解当前目标的进度，并利用前面步骤的信息完成剩下的步骤。
-执行完一个步骤后，请将包括TASK文档在内的对项目的改动提交。
+<Step>
+You must follow the steps below to achieve your goal.
 
-步骤1: 分析漏洞可达路径
-- 工作：
-  -- 分析漏洞函数在项目中的使用情况，逐级向上分析函数调用路径，确定可以触达漏洞函数的入口点
-  -- 更新本TASK文档后面的进度记录
-  -- 将在本步骤中修改的文件（包括TASK）提交到git仓
-- 产出：
-  -- 可以触达漏洞函数的项目入口
-  -- 可以触发漏洞的输入数据
-  -- 入口的类型，是控制台应用的main()函数，还是WEB应用的接口，还是一个库文件的对外函数
-步骤2: 编译项目
-- 工作：
-  -- 在步骤1的分析结果中，如果入口类型是一个库文件的对外函数，则创建一个wrapper应用调用入口函数，之后编译这个wrapper应用；如果入口类型是控制台应用的main()函数或WEB应用的接口，则直接编译项目的相应部分
-  -- 编译前首先查看是否有相关的说明文档，如果有的话请参考说明文档进行编译
-  -- 编译前检查并安装必要的工具和依赖
-  -- 解决编译时出现的问题，可以尝试使用多种方法
-  -- 解决编译问题时尽量避免修改项目中的文件
-  -- 环境中默认是JDK17，如果需要JDK8或JDK11，可以用source命令加载目录/root/jdk下的jdk8.env或jdk11.env，目录下的jdk17.env用于将JDK切回JDK17
-  -- 更新本TASK文档后面的进度记录
-  -- 将在本步骤中修改的文件（包括TASK）提交到git仓
-- 产出：
-  -- 项目的编译产物
-  -- 项目的编译命令
-  -- 编译过程中为解决编译问题对项目文件所做的修改
-步骤3: 启动项目
-- 工作：
-  -- 检查并安装启动项目所需的组件或中间件
-  -- 检查并设置启动项目所需的配置文件和环境变量
-  -- 参考相关的README或其他文档
-  -- 启动项目或wrapper项目
-  -- 更新本TASK文档后面的进度记录
-  -- 将在本步骤中修改的文件（包括TASK）提交到git仓
-- 产出：
-  -- 启动命令
-  -- 必要的配置项和环境变量
-步骤4: 输入数据
-- 工作：
-  -- 分析出向程序传入什么数据可以触发漏洞
-  -- 向程序输入上述数据来触发漏洞，输入的数据以及输入数据的方式根据实际情况决定：可能在启动时通过命令行参数传入，可能在启动后通过标准输入或网络请求等方式传入，也可能在程序启动前在启动环境中设置
-  -- 更新本TASK文档后面的进度记录
-  -- 将在本步骤中修改的文件（包括TASK）提交到git仓
-- 产出：
-  -- 触发漏洞所需的具体输入数据
-  -- 输入方式
-步骤5: 验证漏洞是否触发
-- 工作：
-  -- 分析出漏洞被触发后的预期表现，如特定的输出、文件生成、进程崩溃等
-  -- 根据上述预期表现，验证漏洞是否被触发
-  -- 更新本TASK文档后面的进度记录
-  -- 将在本步骤中修改的文件（包括TASK）提交到git仓
-- 产出：
-  -- 漏洞被触发后的预期表现
-  -- 验证方法
-  -- 验证结果
-步骤6: 脚本编写
-- 工作：
-  -- 如果能够触发漏洞，编写一个脚本将上述步骤自动化
-  -- 脚本需要清理临时文件以避免残留
-  -- 更新本TASK文档后面的进度记录
-  -- 将在本步骤中修改的文件（包括TASK）提交到git仓
-- 产出：漏洞触发脚本
-步骤7: 测试和调试
-- 工作：
-  -- 运行脚本，观察是否能够成功触发漏洞。如果触发漏洞失败，查找原因并解决问题
-  -- 更新本TASK文档后面的进度记录
-  -- 将在本步骤中修改的文件（包括TASK）提交到git仓
-- 产出：
-  -- 编写的脚本能否成功触发漏洞
+* STEP 1: Analyze call path of the vulnerability.
+  ** Work **
+    Analyze the code base of the project related to the vulnerability.
+    Try to locate the entrypoint of the project that can reach the vulnerability.
+    Also figure out the data that is needed to trigger the vulnerability.
+    The entrypoint may be:
+      a main() function if the code containing the vulnerability compiles to a command line program, or
+      a web interface if the project (or one of its modules) compiles to a web server and the code containing the vulnerability is used by the some service in it, or
+      an exposed function if the code containing the vulnerability compiles to a library which provides functionalities to the outer world.
+  ** Output **
+    ENTRYPOINT: the entrypoint of the project that can reach the vulnerability.
+    DATA: the data that is needed to trigger the vulnerability.
+    ENTRYPOINT_TYPE: MAIN_FUNCTION, WEB_INTERFACE or EXPOSED_FUNCTION.
 
-请在下面记录步骤的当前进度和状态，如是否完成、已经完成的工作、尚未完成的工作、当前存在的问题等。在完成某个步骤之后，请在下面记录该步骤的产出。如果任务卡在某个步骤无法完成，请在下面记录当前的问题，之后停止任务。
-步骤1
-- 进度：
-- 产出：
-步骤2
-- 进度：
-- 产出：
-步骤3
-- 进度：
-- 产出：
-步骤4
-- 进度：
-- 产出：
-步骤5
-- 进度：
-- 产出：
-步骤6
-- 进度：
-- 产出：
+* STEP 2: Write wrapper application if needed.
+  ** Work **
+    If the ENTRYPOINT_TYPE in STEP 1 is EXPOSED_FUNCTION, you should write a wrapper application that calls the ENTRYPOINT. 
+    Otherwise you should skip this step and do nothing.This step is optional.
+  ** Output **
+    WRAPPER_APPLICATION: wrapper application that calls the ENTRYPOINT or nothing.
 
-Please show your reasoning process clearly.
+* STEP 3: Prepare JDK.
+  ** Work **
+    Determine the JDK version that should be used to build the vulnerability-related part of the project or the WRAPPER_APPLICATION in STEP 2.
+    You can read documents in the project or check the build tool config to determine the JDK version.
+    Make sure the JDK is accessable in the current environment.
+  ** Output **
+    JDK_VERSION: the JDK version that should be used.
+    JAVA_PATH: path containing the Java executables.
+
+* STEP 4: Build.
+  ** Work **
+    Determine build target. It's the vulnerability-related part of the project (including ENTRYPOINT) or the WRAPPER_APPLICATION in STEP 2 using the proper JDK.
+    Build the target using proper JDK. Note that it is required sometimes to build the target from its parent module when the target is a submodule.
+    <IMPORTANT>
+      When build fails, you must try all possible approaches to make it successful. You can modify project files if nessesary.
+      You are NOT allowed to change the goal of this step or suggest alternative workarounds.
+      If you still cannot succeed after trying your best, stop and report the problem.
+    <IMPORTANT>
+  ** Output **
+    BUILD_COMMAND: the command that can successfully build the target.
+
+* STEP 5: Run the target.
+  ** Work **
+    Run the target built in STEP 4 which includes the ENTRYPOINT. You should first check the required external dependencies for running the target.
+    You can read the project documents, configuration files or the code base to figure out the dependency list.
+    You should then make sure all the dependencies are ready. And you should also change configurations where appropriate for the target to be able to use the dependencies.
+    <IMPORTANT>
+      When run fails, you must try all possible approaches to make it successful. You can modify project files if nessesary.
+      You are NOT allowed to change the goal of this step or suggest alternative workarounds.
+      If you still cannot succeed after trying your best, stop and report the problem.
+    <IMPORTANT>
+  ** Output **
+    START_COMMAND: the command that can successfully start the target.
+
+* STEP 6: Feed the nesserary data.
+  ** Work **
+    Feed data nessesary for triggering the vulnerability to the ENTRYPOINT based on the ENTRYPOINT_TYPE.
+    For WEB_INTERFACE you should call the corresponding web service with proper data.
+    For MAIN_FUNCTION and EXPOSED_FUNCTION the way you feed data may vary, and it is possible that the data has already been fed via command line arguments in STEP 5, in which case you should do nothing here.
+  ** Output **
+    FEED_COMMAND: the command that feeds the data to the ENTRYPOINT or nothing.
+
+* STEP 7: Verify the vulnerability.
+  ** Work **
+    Check whether the vulnerability is triggered or not.
+  ** Output **
+    CONCLUSION: whether the vulnerability can be exploited.
+    EVIDENCE: the command that can inspect the fact and confirm the CONCLUSION.
+
+* STEP 8: Write script.
+  ** Work **
+    Write a script to automate the above steps if the vulnerability can be exploited, or do nothing otherwise.
+    The script should include all the actions you take in previous steps and all the modifications you make to project files and the sandbox environment.
+    The script should be able to run successfully from STEP 2 all the way to STEP 7 on an unmodified copy of the project in a fresh new sandbox environment instance.
+  ** Output **
+    SCRIPT: the vulnerability exploiting POC script or nothing.
+<Step>
