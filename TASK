@@ -15,7 +15,7 @@ You are in a sandbox environment, so don't worry about triggering the vulnerabil
 <Goal>
 
 <Step>
-You must follow the steps below to achieve your goal.
+You must follow the steps below to achieve your goal. When you cannot complete one step after trying your best, DO NOT proceed to the next step, just stop and report.
 
 * STEP 1: Analyze call path of the vulnerability.
   ** Work **
@@ -52,7 +52,7 @@ You must follow the steps below to achieve your goal.
       After JDK version is determined through analysis in STEP 3 it CAN NOT be changed.
       You must use that very version and make sure it is usable.
       If you still cannot succeed after trying your best, stop and report the problem.
-      DO NOT TRY TO USE OTHER VERSION!!! NEVER!!!
+      DO NOT TRY TO USE OTHER VERSIONS!!! NEVER!!!
   ** Output **
     JAVA_PATH: path containing the Java executables.
 
@@ -62,7 +62,7 @@ You must follow the steps below to achieve your goal.
     Build the target using proper JDK. Note that it is required sometimes to build the target from its parent module when the target is a submodule.
     CRITICAL REQUIREMENTS:
       After you determine the target it CAN NOT be changed. You MUST build the EXACT target you choose.
-      When build fails, you must try all possible approaches to make it successful. You can modify project files if nessesary.
+      When build fails, you must try in all possible ways to make it successful. You can modify project files if nessesary.
       You are NOT allowed to change the build target or suggest alternative workarounds.
       If you still cannot succeed after trying your best, stop and report the problem.
       DO NOT TRY TO CREATE A SIMPILIED PROGRAM TO BUILD!!! NEVER!!!
@@ -77,7 +77,7 @@ You must follow the steps below to achieve your goal.
     Update the progress only after you are sure the target is actually fully started.
     CRITICAL REQUIREMENTS:
       You MUST run the EXACT target built in STEP 5, not a different target.
-      When run fails, you must try all possible approaches to make it successful. You can modify project files if nessesary.
+      When run fails, you must try all possible ways to make it successful. You can modify project files if nessesary.
       You are NOT allowed to change the goal of this step or suggest alternative workarounds.
       If you still cannot succeed after trying your best, stop and report the problem.
       DO NOT TRY TO CREATE A SIMPILIED PROGRAM TO RUN!!! NEVER!!!
