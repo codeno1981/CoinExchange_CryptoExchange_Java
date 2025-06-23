@@ -15,7 +15,8 @@ You are in a sandbox environment, so don't worry about triggering the vulnerabil
 <Goal>
 
 <Step>
-You must follow the steps below to achieve your goal. When you cannot complete one step after trying your best, DO NOT proceed to the next step, just stop and report.
+You must follow the steps below to achieve your goal.
+When you cannot complete one step by all means, DO NOT try your best to complete the remaining steps, just stop there and report the problem.
 
 * STEP 1: Analyze call path of the vulnerability.
   ** Work **
