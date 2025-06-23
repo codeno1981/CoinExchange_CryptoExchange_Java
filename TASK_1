@@ -1,0 +1,12 @@
+Analyze the code base of the project related to the vulnerability.
+Try to locate the entrypoint of the project that can reach the vulnerability.
+Also figure out the data that is needed to trigger the vulnerability.
+The entrypoint may be:
+  a main() function if the code containing the vulnerability compiles to a command line program, or
+  a web interface if the project (or one of its modules) compiles to a web server and the code containing the vulnerability is used by the some service in it, or
+  an exposed function if the code containing the vulnerability compiles to a library which provides functionalities to the outer world.
+
+** Output **
+ENTRYPOINT_TYPE: MAIN_FUNCTION, WEB_INTERFACE or EXPOSED_FUNCTION.
+ENTRYPOINT: the full class name of the MAIN_FUNCTION, the module and the path of the WEB_INTERFACE or the and full class name and function name of the exposed function.
+DATA: the data that is needed to trigger the vulnerability.
